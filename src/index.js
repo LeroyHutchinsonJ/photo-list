@@ -5,24 +5,26 @@ import "./styles.css";
 
 class App extends React.Component {
   state = {
+    loading: true,
     urlArr: []
   };
-  componentDidMount = () => {
-    fetch("https://jsonplaceholder.typicode.com/photos")
-      .then(res => res.json())
-      .then(json => this.setState({ urlArr: json }));
-  };
+
+  async componentDidMount() {
+    //Putting the Url in a variable
+    const url = "https://api.randomuser.me/";
+
+    //Putting the Url variable in the fetch api, then putting that in a variable
+    const response = await fetch(url);
+
+    //Turing the response of the fetch api into json
+    const data = await response.json();
+    console.log(data);
+  }
 
   render() {
-    var { urlArr } = this.state;
+    var { urlArr, loading } = this.state;
 
-    return (
-      <div>
-        {urlArr.map(img => (
-          <img key={img.id} src={urlArr.thumbnailUrl} alt="Nothing" />
-        ))}
-      </div>
-    );
+    return <div>{loading ? "Loading..." : "Loaded"}</div>;
   }
 }
 
