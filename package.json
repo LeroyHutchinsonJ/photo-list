@@ -1,7 +1,7 @@
 {
   "name": "photo-list",
   "version": "1.0.0",
-  "description": "List of photos",
+  "description": "List of photos, utilizing API from json placeholder",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
