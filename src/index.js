@@ -5,26 +5,41 @@ import "./styles.css";
 
 class App extends React.Component {
   state = {
-    loading: true,
-    urlArr: []
+    urlArr: [],
+    gender: ""
   };
 
+  //Async means that the function will return a promise
   async componentDidMount() {
     //Putting the Url in a variable
-    const url = "https://api.randomuser.me/";
+    const url = "https://randomuser.me/api/";
 
-    //Putting the Url variable in the fetch api, then putting that in a variable
-    const response = await fetch(url);
+    //Need to use await to introduce promises, works as a replacement to .then
+    const resource = await fetch(url);
 
-    //Turing the response of the fetch api into json
-    const data = await response.json();
-    console.log(data);
+    //Turning the response of the fetch api into json
+    const data = await resource.json();
+
+    //Set the state of the url arr array to the data that I receive from the url
+    this.setState({ urlArr: data.results });
   }
 
   render() {
-    var { urlArr, loading } = this.state;
+    //Makes it so that i dont have to use this.state everytime I want to access inside of state for urlArr
+    var { urlArr } = this.state;
 
-    return <div>{loading ? "Loading..." : "Loaded"}</div>;
+    return (
+      <div>
+        {/*Using map to itterate through the array of objects and pic out what I need which is the photos*/}
+        {urlArr.map(resource => (
+          <img
+            key={resource.id.value}
+            src={resource.picture.medium}
+            alt="Loading"
+          />
+        ))}
+      </div>
+    );
   }
 }
 
