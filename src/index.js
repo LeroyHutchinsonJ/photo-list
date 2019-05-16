@@ -9,7 +9,7 @@ class App extends React.Component {
     gender: ""
   };
 
-  //Async means that the function will return a promise
+  //Async means that the function will do some stuff at the same time, await tells the progam to chill out and focus on one task, can only use await in async functions
   async componentDidMount() {
     //Putting the Url in a variable
     const url = "https://randomuser.me/api/";
@@ -20,7 +20,7 @@ class App extends React.Component {
     //Turning the response of the fetch api into json
     const data = await resource.json();
 
-    //Set the state of the url arr array to the data that I receive from the url
+    //Set the state of the url arr array to the json data that I receive from the url
     this.setState({ urlArr: data.results });
   }
 
