@@ -15,7 +15,7 @@ class App extends React.Component {
   //Async means that the function will do some stuff at the same time, await tells the progam to chill out and focus on one task, can only use await in async functions
   async componentDidMount() {
     //Putting the Url in a variable
-    const url = "https://randomuser.me/api/?results=100";
+    const url = "https://randomuser.me/api/?results=50";
 
     //Need to use await to introduce promises, works as a replacement to .then
     const resource = await fetch(url);
